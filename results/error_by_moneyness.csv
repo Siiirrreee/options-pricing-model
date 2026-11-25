@@ -1,0 +1,5 @@
+Bucket,Options,Avg market IV,Avg error ($),Avg error (%),Inside bid/ask
+Deep OTM puts (K < 90% of F),9,39.4%,-22.24,-92.6%,0%
+OTM puts (90–97%),10,31.6%,-30.25,-52.9%,0%
+Near the money (97–103%),9,24.1%,+0.01,1.6%,11%
+OTM calls (K > 103%),11,18.0%,+20.58,270.3%,0%

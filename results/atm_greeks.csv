@@ -1,0 +1,3 @@
+Contract,Market mid,Implied vol,BS price @ IV,Delta,Gamma,Vega,Theta/day,Rho
+"Call 7,200",150.35,23.4%,150.35,0.471,0.00093,7.28,-3.92,2.11
+"Put 7,150",173.80,24.2%,173.80,-0.482,0.00090,7.29,-3.26,-2.38
