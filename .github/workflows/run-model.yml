@@ -1,0 +1,34 @@
+name: Run model
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ["results/**", "visuals/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install numpy pandas scipy matplotlib tabulate pytest nbconvert ipykernel
+      - name: Run tests
+        run: python -m pytest -q
+      - name: Run the pricing pipeline
+        run: python main.py
+      - name: Execute the walkthrough notebook
+        run: jupyter nbconvert --to notebook --execute --inplace notebooks/options_pricing_walkthrough.ipynb
+      - name: Commit results, charts and notebook outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results visuals notebooks README.md
+          git diff --cached --quiet || git commit -m "Update results, charts and notebook outputs [skip ci]"
+          git push
